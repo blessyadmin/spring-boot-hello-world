@@ -8,4 +8,11 @@ pipeline {
                }
             }
         }
+        stage("Unit-Test"){
+            steps {
+                script {
+                    sh "unit test hello world"
+                }
+            }
+        }
 }
