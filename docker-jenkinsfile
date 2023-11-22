@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    environment {
+          registry = "aru07/hello-world"
+          registryCredential = 'add79bc2-c152-4a2b-8854-33d94e7d3c8c'
+          dockerImage = ''
+      }
+    stages {
+     
+      stage('Build-Code'){
+          steps {
+              script {
+                  sh "mvn install"
+              }
+          }
+      }
+    }
+      stage('Building our image') {
+          steps{
+              script {
+                  dockerImage = docker.build registry + ":latest"
+              }
+          }
+      }
+      stage('Push Registry') {
+          steps{
+              script {
+                  docker.withRegistry( '', registryCredential ) {
+                      dockerImage.push()
+                 }
+              }
+          }
+      }
+    }
