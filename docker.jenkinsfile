@@ -13,14 +13,14 @@ pipeline {
                 }
             }
          }
-         stages('building our image') {
+         stage('building our image') {
             steps{
                 script {
                     dockerImage = docker.build registry +":latest"
                 }
             }
          }
-         stages('push Registry') {
+         stage('push Registry') {
             steps{
                 script {
                     docker.withRegistry('',registryCredntial ){
