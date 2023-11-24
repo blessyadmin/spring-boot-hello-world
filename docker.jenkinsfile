@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
           registry ="aru07/hello-world"
-          registryCredential ='docker.jenkinsfile'
+          registryCredential ='docker-hub-k8s'
           dockerImage =''
     }
     stages {
